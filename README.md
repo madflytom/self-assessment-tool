@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
 
+This is a little tool to assist developers in thinking through their annual performance reviews.  While this tool is geared toward middle and year end review cycles, it should be used regularly to make sure goals and competencies are continually being assessed to ensure alignment with grade level expectations.
+
+This tool may never see the light of day, but is mostly being developed to help keep my coding skills in Angular current and functional.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
