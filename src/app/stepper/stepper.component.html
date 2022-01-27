@@ -8,7 +8,7 @@
                     <div class="form-inside-grid">
                         <mat-form-field appearance="fill">
                             <mat-label>Name</mat-label>
-                            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                            <input matInput placeholder="Last name, First name" formControlName="firstCtrl">
                         </mat-form-field>
                     </div>
                 </mat-grid-tile>
@@ -17,7 +17,7 @@
                     <div class="form-inside-grid">
                         <mat-form-field appearance="fill">
                             <mat-label>Grade Level</mat-label>
-                            <input matInput placeholder="109" formControlName="gradeLevel" required>
+                            <input matInput placeholder="109" formControlName="gradeLevel">
                         </mat-form-field>
                     </div>
                 </mat-grid-tile>
@@ -27,17 +27,36 @@
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+    <mat-step [stepControl]="secondFormGroup" label="Competency Self Assessment">
+        <p></p>
         <form [formGroup]="secondFormGroup">
-            <mat-form-field appearance="fill">
-                <mat-label>Address</mat-label>
-                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-            </div>
+            <input matInput hidden formControlName="goodPerson">
         </form>
+
+        <mat-grid-list cols="2">
+            <mat-grid-tile>
+                <div class="form-inside-grid">
+                    <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" step="1" min="0" max="4"
+                        aria-label="units" [(ngModel)]="value" (change)="updateForm(value)"
+                        (input)="updateLabel($event)">
+                    </mat-slider>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <p>{{explanationValue}}</p>
+            </mat-grid-tile>
+
+
+            <!-- More stuff to do here-->
+
+
+
+        </mat-grid-list>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Done</ng-template>
