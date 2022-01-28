@@ -2,3 +2,11 @@
     position: absolute;
     left: 5px;
   }
+
+  .card-padding{
+    padding-left: 20px;
+  }
+
+  .preformatted {
+    white-space: pre;
+}

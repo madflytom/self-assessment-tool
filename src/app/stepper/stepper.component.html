@@ -27,37 +27,59 @@
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Competency Self Assessment">
-        <p></p>
+    <mat-step [stepControl]="secondFormGroup" label="Competency 1">
         <form [formGroup]="secondFormGroup">
             <input matInput hidden formControlName="goodPerson">
         </form>
-
-        <mat-grid-list cols="2">
-            <mat-grid-tile>
-                <div class="form-inside-grid">
-                    <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" step="1" min="0" max="4"
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Being a good person</mat-card-title>
+                <mat-card-subtitle>What it looks like to be a good person</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card-padding">
+                    <mat-slider thumbLabel step="1" min="0" max="4"
                         aria-label="units" [(ngModel)]="value" (change)="updateForm(value)"
                         (input)="updateLabel($event)">
                     </mat-slider>
+                    <h2>Competency Score: {{value}}</h2>
+                    <div [innerHTML]="explanationValue"></div>
                 </div>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <p>{{explanationValue}}</p>
-            </mat-grid-tile>
-
-
-            <!-- More stuff to do here-->
-
-
-
-        </mat-grid-list>
+            </mat-card-content>
+        </mat-card>
         <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
         </div>
-
     </mat-step>
+
+    <mat-step [stepControl]="thirdFormGroup" label="Competency 2">
+        <form [formGroup]="thirdFormGroup">
+            <input hidden matInput formControlName="goodWork">
+        </form>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Doing Good Work</mat-card-title>
+                <mat-card-subtitle>What it looks like to do good work</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card-padding">
+                    <mat-slider thumbLabel step="1" min="0" max="4"
+                        aria-label="units" [(ngModel)]="value2" (change)="updateForm2(value2)"
+                        (input)="updateLabel2($event)">
+                    </mat-slider>
+                    <h2>Competency Score: {{value2}}</h2>
+                    <div [innerHTML]="explanationValue2"></div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+
+
     <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>

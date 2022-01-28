@@ -15,6 +15,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { StepperComponent } from './stepper/stepper.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import {MatSliderModule} from '@angular/material/slider';
     MatInputModule,
     MatButtonModule,
     MatGridListModule,
-    MatSliderModule
+    MatSliderModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
