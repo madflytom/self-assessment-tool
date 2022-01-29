@@ -17,30 +17,41 @@
                     <div class="form-inside-grid">
                         <mat-form-field appearance="fill">
                             <mat-label>Grade Level</mat-label>
-                            <input matInput placeholder="109" formControlName="gradeLevel">
+                            <input matInput placeholder="109" type="number" formControlName="gradeLevel">
                         </mat-form-field>
                     </div>
                 </mat-grid-tile>
             </mat-grid-list>
             <div>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperNext (click)="setCompLevel()" [disabled]="firstFormGroup.invalid">Next</button>
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Competency 1">
+    <mat-step [stepControl]="secondFormGroup" label="Focus">
         <form [formGroup]="secondFormGroup">
             <input matInput hidden formControlName="goodPerson">
         </form>
         <mat-card>
             <mat-card-header>
-                <mat-card-title>Being a good person</mat-card-title>
-                <mat-card-subtitle>What it looks like to be a good person</mat-card-subtitle>
+                <mat-card-title>Focus on Clients</mat-card-title>
+                <mat-card-subtitle>Anticipates and delivers on client needs to help them reach new levels of success.
+                </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <div class="card-padding">
-                    <mat-slider thumbLabel step="1" min="0" max="4"
-                        aria-label="units" [(ngModel)]="value" (change)="updateForm(value)"
-                        (input)="updateLabel($event)">
+                    <div class="competency-padding">
+                        <ul>
+                            <li>Develops and maintains an awareness of Covance's capabilities, markets and trends, and
+                                competitors</li>
+                            <li>Demonstrates understanding of internal / external client's "world" and their immediate
+                                and future needs and expectations</li>
+                            <li>Proactively brings new ideas forward to lead clients' thinking and increase
+                                satisfaction, does not just respond to a situation or request</li>
+                            <li>Seeks, shares, and promotes expertise internally and with our partners</li>
+                        </ul>
+                    </div>
+                    <mat-slider thumbLabel step="0.5" min="0" max="4" aria-label="units" [(ngModel)]="value"
+                        (change)="updateForm(value)" (input)="updateLabel($event)">
                     </mat-slider>
                     <h2>Competency Score: {{value}}</h2>
                     <div [innerHTML]="explanationValue"></div>
@@ -49,24 +60,34 @@
         </mat-card>
         <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperNext [disabled]="secondFormGroup.invalid">Next</button>
         </div>
     </mat-step>
 
-    <mat-step [stepControl]="thirdFormGroup" label="Competency 2">
+    <mat-step [stepControl]="thirdFormGroup" label="Innovate">
         <form [formGroup]="thirdFormGroup">
             <input hidden matInput formControlName="goodWork">
         </form>
         <mat-card>
             <mat-card-header>
-                <mat-card-title>Doing Good Work</mat-card-title>
-                <mat-card-subtitle>What it looks like to do good work</mat-card-subtitle>
+                <mat-card-title>Innovate and Change</mat-card-title>
+                <mat-card-subtitle>Identifies new ways of looking at things to achieve results.</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <div class="card-padding">
-                    <mat-slider thumbLabel step="1" min="0" max="4"
-                        aria-label="units" [(ngModel)]="value2" (change)="updateForm2(value2)"
-                        (input)="updateLabel2($event)">
+                    <div class="competency-padding">
+                        <ul>
+                            <li>Digs under the obvious and immediate information to understand situations and provide
+                                insights</li>
+                            <li>Looks beyond the boundaries of own business unit, site, department, or past experiences
+                                when generating ideas or solutions to problems</li>
+                            <li>Challenges traditional thinking and assumptions, shapes new solutions, and adopts new
+                                approaches</li>
+                            <li>Recognizes changing situations and priorities and adapts rapidly</li>
+                        </ul>
+                    </div>
+                    <mat-slider thumbLabel step="0.5" min="0" max="4" aria-label="units" [(ngModel)]="value2"
+                        (change)="updateForm2(value2)" (input)="updateLabel2($event)">
                     </mat-slider>
                     <h2>Competency Score: {{value2}}</h2>
                     <div [innerHTML]="explanationValue2"></div>
@@ -75,14 +96,132 @@
         </mat-card>
         <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperNext [disabled]="thirdFormGroup.invalid">Next</button>
+        </div>
+    </mat-step>
+
+    <mat-step [stepControl]="fourthFormGroup" label="Develop">
+        <form [formGroup]="fourthFormGroup">
+            <input hidden matInput formControlName="developWork">
+        </form>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Develop Self and Teams</mat-card-title>
+                <mat-card-subtitle>Maximizes our partners' potential as well as our own.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card-padding">
+                    <div class="competency-padding">
+                        <ul>
+                            <li>Engages in continuous learning using a variety of experiences to develop self and others
+                            </li>
+                            <li>Gives and seeks feedback to find ways of enhancing performance</li>
+                            <li>Engages in valuable development discussions</li>
+                            <li>Proactively expands expertise in areas of responsibility</li>
+                        </ul>
+                    </div>
+                    <mat-slider thumbLabel step="0.5" min="0" max="4" aria-label="units" [(ngModel)]="value3"
+                        (change)="updateForm3(value3)" (input)="updateLabel3($event)">
+                    </mat-slider>
+                    <h2>Competency Score: {{value3}}</h2>
+                    <div [innerHTML]="explanationValue3"></div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext [disabled]="fourthFormGroup.invalid">Next</button>
+        </div>
+    </mat-step>
+
+    <mat-step [stepControl]="fifthFormGroup" label="Collaborate">
+        <form [formGroup]="fifthFormGroup">
+            <input hidden matInput formControlName="collabWork">
+        </form>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Work Well with Others</mat-card-title>
+                <mat-card-subtitle>Builds relationships to partner for success and shape new solutions.
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card-padding">
+                    <div class="competency-padding">
+                        <ul>
+                            <li>Earns the trust and support of peers, internal/external clients, and other key
+                                stakeholders through consistent honesty and professionalism in all interactions</li>
+                            <li>Brings disagreements or difficult subjects into the open so they can be resolved, while
+                                maintaining respect for individuals</li>
+                            <li>Fights for ideas, not with people</li>
+                        </ul>
+                    </div>
+                    <mat-slider thumbLabel step="0.5" min="0" max="4" aria-label="units" [(ngModel)]="value4"
+                        (change)="updateForm4(value4)" (input)="updateLabel4($event)">
+                    </mat-slider>
+                    <h2>Competency Score: {{value4}}</h2>
+                    <div [innerHTML]="explanationValue4"></div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext [disabled]="fifthFormGroup.invalid">Next</button>
+        </div>
+    </mat-step>
+
+    <mat-step [stepControl]="sixthFormGroup" label="Gets it Done">
+        <form [formGroup]="sixthFormGroup">
+            <input hidden matInput formControlName="doneWork">
+        </form>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Gets It Done</mat-card-title>
+                <mat-card-subtitle>Executes with integrity and precision.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="card-padding">
+                    <div class="competency-padding">
+                        <ul>
+                            <li>Maintains a roll-up-your-sleeves mentality and a need for on time, accurate completion
+                            </li>
+                            <li>Acts with integrity, always doing the right thing even when no one is watching</li>
+                            <li>Anticipates obstacles that may prevent meeting business objectives and identifies
+                                solutions to overcome difficulties</li>
+                            <li>Holds self accountable for accomplishing results and delivering with precision on
+                                commitments</li>
+                            <li>Knows how to get things done in a complex, matrixed, virtual, and global organization
+                            </li>
+                        </ul>
+                    </div>
+                    <mat-slider thumbLabel step="0.5" min="0" max="4" aria-label="units" [(ngModel)]="value5"
+                        (change)="updateForm5(value5)" (input)="updateLabel5($event)">
+                    </mat-slider>
+                    <h2>Competency Score: {{value5}}</h2>
+                    <div [innerHTML]="explanationValue5"></div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext (click)="finalCalc()" [disabled]="sixthFormGroup.invalid">Next</button>
         </div>
     </mat-step>
 
 
     <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
+        <ng-template matStepLabel>Competency Rating</ng-template>
+        <h1>Weighted Competency Score*: {{finalValue}}</h1>
+        <h2>{{finalRating}}</h2>
+        <p>{{finalExplanation}}</p>
+        <p>Your ratings:</p>
+        <ul>
+            <li>Focus on Clients: {{value}}</li>
+            <li>Innovate and Change: {{value2}}</li>
+            <li>Develops Self and Others: {{value3}}</li>
+            <li>Work with Others: {{value4}}</li>
+            <li>Gets it Done: {{value5}}</li>
+        </ul>
+        <p><i>* Weighted competency score is based on the following calculation: SUM(your ratings)/5</i></p>
         <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>

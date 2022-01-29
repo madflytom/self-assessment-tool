@@ -1,12 +1,16 @@
 .form-inside-grid {
-    position: absolute;
-    left: 5px;
-  }
+  position: absolute;
+  left: 5px;
+}
 
-  .card-padding{
-    padding-left: 20px;
-  }
+.card-padding{
+  padding-left: 20px;
+}
 
-  .preformatted {
-    white-space: pre;
+.preformatted {
+  white-space: pre;
+}
+
+.competency-padding{
+  padding-bottom: 25px;
 }
