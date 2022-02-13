@@ -16,6 +16,7 @@ import { StepperComponent } from './stepper/stepper.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -37,7 +38,8 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     MatGridListModule,
     MatSliderModule,
-    MatCardModule
+    MatCardModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

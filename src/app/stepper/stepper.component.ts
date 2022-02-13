@@ -26,12 +26,22 @@ export class StepperComponent implements OnInit {
   finalValue = 0;
   finalExplanation = "";
   finalRating = "";
+  compMode = false;
 
   explanationValue = "Drag the slider to choose the behavior that best describes you.";
+  compExplanationValue = "";
+
   explanationValue2 = "Drag the slider to choose the behavior that best describes you.";
+  compExplanationValue2 = "";
+
   explanationValue3 = "Drag the slider to choose the behavior that best describes you.";
+  compExplanationValue3 = "";
+
   explanationValue4 = "Drag the slider to choose the behavior that best describes you.";
+  compExplanationValue4 = "";
+
   explanationValue5 = "Drag the slider to choose the behavior that best describes you.";
+  compExplanationValue5 = "";
 
   defaultComp = {
     "1": "",
@@ -136,13 +146,16 @@ export class StepperComponent implements OnInit {
   }
 
   compLevel = this.AD1CompLevels;
+  compareModeLevel = this.AD1CompLevels;
 
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
-      gradeLevel: ['', Validators.required]
+      gradeLevel: ['', Validators.required],
+      compMode: [],
+      compGradeLevel: ['']
     });
     this.secondFormGroup = this._formBuilder.group({
       goodPerson: ['', Validators.required],
@@ -182,31 +195,41 @@ export class StepperComponent implements OnInit {
     this.sixthFormGroup.controls["doneWork"].setValue(value);
   }
 
+  // TODO: Work on a method that will do this work without all the repeating code.  
+  // This is just prototype right now, but can be much more DRY once the concept is ironed out.
   updateLabel(event: MatSliderChange) {
     switch (event.value) {
       case 1:
         this.explanationValue = this.compLevel["focus"][1];
+        this.compExplanationValue = this.compareModeLevel["focus"][1];
         break;
       case 1.5:
         this.explanationValue = this.compLevel["focus"][1];
+        this.compExplanationValue = this.compareModeLevel["focus"][1];
         break;
       case 2:
         this.explanationValue = this.compLevel["focus"][2];
+        this.compExplanationValue = this.compareModeLevel["focus"][2];
         break;
       case 2.5:
         this.explanationValue = this.compLevel["focus"][2];
+        this.compExplanationValue = this.compareModeLevel["focus"][2];
         break;
       case 3:
         this.explanationValue = this.compLevel["focus"][3]
+        this.compExplanationValue = this.compareModeLevel["focus"][3];
         break;
       case 3.5:
         this.explanationValue = this.compLevel["focus"][3]
+        this.compExplanationValue = this.compareModeLevel["focus"][3];
         break;
       case 4:
         this.explanationValue = this.compLevel["focus"][4]
+        this.compExplanationValue = this.compareModeLevel["focus"][4];
         break;
       default:
         this.explanationValue = "Drag the slider to choose the behavior that best describes you.";
+        this.compExplanationValue = "";
     }
   }
 
@@ -214,27 +237,35 @@ export class StepperComponent implements OnInit {
     switch (event.value) {
       case 1:
         this.explanationValue2 = this.compLevel["innovate"][1];
+        this.compExplanationValue2 = this.compareModeLevel["innovate"][1];
         break;
       case 1.5:
         this.explanationValue2 = this.compLevel["innovate"][1];
+        this.compExplanationValue2 = this.compareModeLevel["innovate"][1];
         break;
       case 2:
         this.explanationValue2 = this.compLevel["innovate"][2];
+        this.compExplanationValue2 = this.compareModeLevel["innovate"][2];
         break;
       case 2.5:
         this.explanationValue2 = this.compLevel["innovate"][2];
+        this.compExplanationValue2 = this.compareModeLevel["innovate"][2];
         break;
       case 3:
         this.explanationValue2 = this.compLevel["innovate"][3]
+        this.compExplanationValue2 = this.compareModeLevel["innovate"][3];
         break;
       case 3.5:
         this.explanationValue2 = this.compLevel["innovate"][3]
+        this.compExplanationValue2 = this.compareModeLevel["innovate"][3];
         break;
       case 4:
         this.explanationValue2 = this.compLevel["innovate"][4]
+        this.compExplanationValue2 = this.compareModeLevel["innovate"][4];
         break;
       default:
         this.explanationValue2 = "Drag the slider to choose the behavior that best describes you.";
+        this.compExplanationValue2 = "";
     }
   }
 
@@ -242,27 +273,35 @@ export class StepperComponent implements OnInit {
     switch (event.value) {
       case 1:
         this.explanationValue3 = this.compLevel["develop"][1];
+        this.compExplanationValue3 = this.compareModeLevel["develop"][1];
         break;
       case 1.5:
         this.explanationValue3 = this.compLevel["develop"][1];
+        this.compExplanationValue3 = this.compareModeLevel["develop"][1];
         break;
       case 2:
         this.explanationValue3 = this.compLevel["develop"][2];
+        this.compExplanationValue3 = this.compareModeLevel["develop"][2];
         break;
       case 2.5:
         this.explanationValue3 = this.compLevel["develop"][2];
+        this.compExplanationValue3 = this.compareModeLevel["develop"][2];
         break;
       case 3:
         this.explanationValue3 = this.compLevel["develop"][3]
+        this.compExplanationValue3 = this.compareModeLevel["develop"][3];
         break;
       case 3.5:
         this.explanationValue3 = this.compLevel["develop"][3]
+        this.compExplanationValue3 = this.compareModeLevel["develop"][3];
         break;
       case 4:
         this.explanationValue3 = this.compLevel["develop"][4]
+        this.compExplanationValue3 = this.compareModeLevel["develop"][4];
         break;
       default:
-        this.explanationValue5 = "Drag the slider to choose the behavior that best describes you.";
+        this.explanationValue3 = "Drag the slider to choose the behavior that best describes you.";
+        this.compExplanationValue3 = "";
     }
   }
 
@@ -270,27 +309,35 @@ export class StepperComponent implements OnInit {
     switch (event.value) {
       case 1:
         this.explanationValue4 = this.compLevel["work"][1];
+        this.compExplanationValue4 = this.compareModeLevel["work"][1];
         break;
       case 1.5:
         this.explanationValue4 = this.compLevel["work"][1];
+        this.compExplanationValue4 = this.compareModeLevel["work"][1];
         break;
       case 2:
         this.explanationValue4 = this.compLevel["work"][2];
+        this.compExplanationValue4 = this.compareModeLevel["work"][2];
         break;
       case 2.5:
         this.explanationValue4 = this.compLevel["work"][2];
+        this.compExplanationValue4 = this.compareModeLevel["work"][2];
         break;
       case 3:
         this.explanationValue4 = this.compLevel["work"][3]
+        this.compExplanationValue4 = this.compareModeLevel["work"][3];
         break;
       case 3.5:
         this.explanationValue4 = this.compLevel["work"][3]
+        this.compExplanationValue4 = this.compareModeLevel["work"][3];
         break;
       case 4:
         this.explanationValue4 = this.compLevel["work"][4]
+        this.compExplanationValue4 = this.compareModeLevel["work"][4];
         break;
       default:
         this.explanationValue4 = "Drag the slider to choose the behavior that best describes you.";
+        this.compExplanationValue4 = ""
     }
   }
 
@@ -298,27 +345,35 @@ export class StepperComponent implements OnInit {
     switch (event.value) {
       case 1:
         this.explanationValue5 = this.compLevel["done"][1];
+        this.compExplanationValue5 = this.compareModeLevel["done"][1];
         break;
       case 1.5:
         this.explanationValue5 = this.compLevel["done"][1];
+        this.compExplanationValue5 = this.compareModeLevel["done"][1];
         break;
       case 2:
         this.explanationValue5 = this.compLevel["done"][2];
+        this.compExplanationValue5 = this.compareModeLevel["done"][2];
         break;
       case 2.5:
         this.explanationValue5 = this.compLevel["done"][2];
+        this.compExplanationValue5 = this.compareModeLevel["done"][2];
         break;
       case 3:
-        this.explanationValue5 = this.compLevel["done"][3]
+        this.explanationValue5 = this.compLevel["done"][3];
+        this.compExplanationValue5 = this.compareModeLevel["done"][3];
         break;
       case 3.5:
-        this.explanationValue5 = this.compLevel["done"][3]
+        this.explanationValue5 = this.compLevel["done"][3];
+        this.compExplanationValue5 = this.compareModeLevel["done"][3];
         break;
       case 4:
-        this.explanationValue5 = this.compLevel["done"][4]
+        this.explanationValue5 = this.compLevel["done"][4];
+        this.compExplanationValue5 = this.compareModeLevel["done"][4];
         break;
       default:
         this.explanationValue5 = "Drag the slider to choose the behavior that best describes you.";
+        this.compExplanationValue5 = "";
     }
   }
 
@@ -361,7 +416,34 @@ export class StepperComponent implements OnInit {
       default:
         this.compLevel = this.defaultCompLevels;
     }
+    if(this.firstFormGroup.controls["compMode"].value){
+      this.setCompareModeLevel();
+    }
     console.log(this.compLevel);
+  }
+
+  setCompareModeLevel() {
+    console.log(this.firstFormGroup.controls["compGradeLevel"].value);
+    switch (this.firstFormGroup.controls["compGradeLevel"].value) {
+      case 109:
+        this.compareModeLevel = this.AD1CompLevels;
+        break;
+      case 110:
+        this.compareModeLevel = this.AD2CompLevels;
+        break;
+      case 111:
+        this.compareModeLevel = this.AD3CompLevels;
+        break;
+      case 112:
+        this.compareModeLevel = this.AD4CompLevels;
+        break;
+      case 113:
+        this.compareModeLevel = this.AD5CompLevels;
+        break;
+      default:
+        this.compareModeLevel = this.defaultCompLevels;
+    }
+    console.log(this.compareModeLevel);
   }
 
 }

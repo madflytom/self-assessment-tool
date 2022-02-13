@@ -8,7 +8,7 @@
                     <div class="form-inside-grid">
                         <mat-form-field appearance="fill">
                             <mat-label>Name</mat-label>
-                            <input matInput placeholder="Last name, First name" formControlName="firstCtrl">
+                            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" />
                         </mat-form-field>
                     </div>
                 </mat-grid-tile>
@@ -17,10 +17,28 @@
                     <div class="form-inside-grid">
                         <mat-form-field appearance="fill">
                             <mat-label>Grade Level</mat-label>
-                            <input matInput placeholder="109" type="number" formControlName="gradeLevel">
+                            <input matInput placeholder="109" type="number" formControlName="gradeLevel" />
                         </mat-form-field>
                     </div>
                 </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <div class="form-inside-grid">
+
+                            <mat-checkbox formControlName="compMode">Compare Mode?</mat-checkbox>
+
+                    </div>
+                </mat-grid-tile>
+
+                <mat-grid-tile *ngIf="firstFormGroup.controls['compMode'].value;"> 
+                    <div class="form-inside-grid">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Compare with which grade?</mat-label>
+                            <input matInput placeholder="109" type="number" formControlName="compGradeLevel" />
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+
             </mat-grid-list>
             <div>
                 <button mat-button matStepperNext (click)="setCompLevel()" [disabled]="firstFormGroup.invalid">Next</button>
@@ -54,7 +72,12 @@
                         (change)="updateForm(value)" (input)="updateLabel($event)">
                     </mat-slider>
                     <h2>Competency Score: {{value}}</h2>
-                    <div [innerHTML]="explanationValue"></div>
+                    <p [innerHTML]="explanationValue"></p>
+
+                    <div *ngIf="firstFormGroup.controls['compMode'].value;">
+                        <h3><b>Compared to grade: {{firstFormGroup.controls['compGradeLevel'].value}}</b></h3>
+                        <p [innerHTML]="compExplanationValue"></p>
+                    </div>
                 </div>
             </mat-card-content>
         </mat-card>
@@ -90,7 +113,12 @@
                         (change)="updateForm2(value2)" (input)="updateLabel2($event)">
                     </mat-slider>
                     <h2>Competency Score: {{value2}}</h2>
-                    <div [innerHTML]="explanationValue2"></div>
+                    <p [innerHTML]="explanationValue2"></p>
+
+                    <div *ngIf="firstFormGroup.controls['compMode'].value;">
+                        <h3><b>Compared to grade: {{firstFormGroup.controls['compGradeLevel'].value}}</b></h3>
+                        <p [innerHTML]="compExplanationValue2"></p>
+                    </div>
                 </div>
             </mat-card-content>
         </mat-card>
@@ -124,7 +152,12 @@
                         (change)="updateForm3(value3)" (input)="updateLabel3($event)">
                     </mat-slider>
                     <h2>Competency Score: {{value3}}</h2>
-                    <div [innerHTML]="explanationValue3"></div>
+                    <p [innerHTML]="explanationValue3"></p>
+
+                    <div *ngIf="firstFormGroup.controls['compMode'].value;">
+                        <h3><b>Compared to grade: {{firstFormGroup.controls['compGradeLevel'].value}}</b></h3>
+                        <p [innerHTML]="compExplanationValue3"></p>
+                    </div>
                 </div>
             </mat-card-content>
         </mat-card>
@@ -159,7 +192,12 @@
                         (change)="updateForm4(value4)" (input)="updateLabel4($event)">
                     </mat-slider>
                     <h2>Competency Score: {{value4}}</h2>
-                    <div [innerHTML]="explanationValue4"></div>
+                    <p [innerHTML]="explanationValue4"></p>
+
+                    <div *ngIf="firstFormGroup.controls['compMode'].value;">
+                        <h3><b>Compared to grade: {{firstFormGroup.controls['compGradeLevel'].value}}</b></h3>
+                        <p [innerHTML]="compExplanationValue4"></p>
+                    </div>
                 </div>
             </mat-card-content>
         </mat-card>
@@ -197,7 +235,12 @@
                         (change)="updateForm5(value5)" (input)="updateLabel5($event)">
                     </mat-slider>
                     <h2>Competency Score: {{value5}}</h2>
-                    <div [innerHTML]="explanationValue5"></div>
+                    <p [innerHTML]="explanationValue5"></p>
+
+                    <div *ngIf="firstFormGroup.controls['compMode'].value;">
+                        <h3><b>Compared to grade: {{firstFormGroup.controls['compGradeLevel'].value}}</b></h3>
+                        <p [innerHTML]="compExplanationValue5"></p>
+                    </div>
                 </div>
             </mat-card-content>
         </mat-card>
